@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+      <script src="js/jquery-3.4.1.js"></script>
+      <script src="js/scripts.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">  
+    <link href="css/styles.css" rel="stylesheet" type="text/css">  
+    <title>Address Book</title>
+  </head>
+
+
+  <body>
+    <div class="container">
+
+        <div class="panel panel-warning">
+          <div class="panel-heading h1">
+            Bernice's Address Book
+          </div>
+        </div>
+      
+      <div class="panel panel-info">
+        <div class="panel-heading h2">
+          Add a contact
+        </div>
+        <div class="panel-body">
+          <form id="input">
+            <div id="div-new-first-name" class="form-group">
+              <label for="new-first-name" class="control-label">First Name</label>
+              <input id="new-first-name" class="form-control">
+            </div>
+            <div id="div-new-last-name" class="form-group">
+              <label for="new-last-name" class="control-label">Last Name</label>
+              <input id="new-last-name" class="form-control">
+            </div>
+            <div id="div-phone-number" class="form-group">
+              <label for="new-phone-number" class="control-label">Phone Number</label>
+              <input id="new-phone-number" class="form-control">
+            </div>
+            <button type="submit">Add Contact</button>
+          </form>
+        </div>
+      </div> <!-- end add contact-->
+
+      <div class="panel panel-success">
+        <div class="panel-heading h2">
+          Contacts
+          <ul id="ul-contacts">
+          </ul>
+        </div>
+        <div id="show-contact" class="panel-body">
+          <p>First Name: <span class="first-name"></span></p>
+          <p>Last Name: <span class="last-name"></span></p>
+          <p>Phone Number: <span class="phone-number"></span></p>
+          <div id="buttons">
+          </div>
+      </div> <!-- end show contact -->
+
+    </div>
+  </body>
+</html>
