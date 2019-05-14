@@ -1,6 +1,26 @@
 // front-end logic
 var addressBook = new AddressBook;
 
+function showContact (id) {
+  var contact = addressBook.findContact(id);
+  debugger;
+  if ( contact ) {
+    $("#span-first-name").text(contact.firstName);
+    $("#span-last-name").text(contact.lastName);
+    $("#span-phone-number").text(contact.phoneNumber);
+    var buttons=$("#buttons");
+    buttons.empty();
+    buttons.append("<button class='deleteButton' id=" + contact.id + ">Delete</button>");
+    $("#div-show-contact").show();
+  }
+};
+
+function attachContactListeners() {
+  $("#ul-contacts").on("click","li",function() {
+    showContact(parseInt(this.id));
+  });
+};
+
 var displayContactDetails = function(addressBookToDisplay) {
   var contactsList = $("#ul-contacts");
   var htmlContactsList = "";
@@ -8,9 +28,12 @@ var displayContactDetails = function(addressBookToDisplay) {
     htmlContactsList += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
   })
   contactsList.html(htmlContactsList);
-}
+};
 
 $(document).ready(function(){
+
+  attachContactListeners();
+
   $("form#input").submit(function(event){
     event.preventDefault();
 
