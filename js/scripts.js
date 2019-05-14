@@ -1,6 +1,15 @@
 // front-end logic
 var addressBook = new AddressBook;
 
+var displayContactDetails = function(addressBookToDisplay) {
+  var contactsList = $("#ul-contacts");
+  var htmlContactsList = "";
+  addressBookToDisplay.contacts.forEach (function (contact) {
+    htmlContactsList += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
+  })
+  contactsList.html(htmlContactsList);
+}
+
 $(document).ready(function(){
   $("form#input").submit(function(event){
     event.preventDefault();
@@ -19,7 +28,7 @@ $(document).ready(function(){
     if ( validInputs(firstNameInput, lastNameInput, phoneNumberInput)) {
       var newContact = new Contact(firstNameInput, lastNameInput, phoneNumberInput);
       addressBook.addContact (newContact);
-      console.log(addressBook.contacts);
+      displayContactDetails(addressBook);
     } else {
       alert ("Invalid entry. Try again.");
     }
