@@ -3,7 +3,6 @@ var addressBook = new AddressBook;
 
 function showContact (id) {
   var contact = addressBook.findContact(id);
-  debugger;
   if ( contact ) {
     $("#span-first-name").text(contact.firstName);
     $("#span-last-name").text(contact.lastName);
@@ -15,9 +14,20 @@ function showContact (id) {
   }
 };
 
+function myDeleteContact (id) {
+  addressBook.deleteContact(id);
+  $("#div-show-contact").hide();
+  displayContactDetails(addressBook);
+};
+
 function attachContactListeners() {
+  // add event listener for each individual contact in list 
   $("#ul-contacts").on("click","li",function() {
     showContact(parseInt(this.id));
+  });
+  // add event listener for each delete button
+  $("#buttons").on("click",".deleteButton", function() {
+    myDeleteContact(parseInt(this.id));
   });
 };
 
@@ -51,6 +61,9 @@ $(document).ready(function(){
     if ( validInputs(firstNameInput, lastNameInput, phoneNumberInput)) {
       var newContact = new Contact(firstNameInput, lastNameInput, phoneNumberInput);
       addressBook.addContact (newContact);
+      $("#new-first-name").val("");
+      $("#new-last-name").val("");
+      $("#new-phone-number").val("");
       displayContactDetails(addressBook);
     } else {
       alert ("Invalid entry. Try again.");
@@ -59,7 +72,20 @@ $(document).ready(function(){
 
   // validate form input
   var validInputs = function(firstName, lastName, phoneNumber) {
-    return true;
+    var blnValid = true;
+    if (!firstName) {
+      $("#div-new-first-name").addClass("has-error");
+      blnValid = false;
+    }
+    if (!lastName) {
+      $("#div-new-last-name").addClass("has-error");
+      blnValid = false;
+    }      
+    if (!phoneNumber) {
+      $("#div-new-phone-number").addClass("has-error");
+      blnValid = false;
+    }
+    return blnValid;
   }
 });
 
